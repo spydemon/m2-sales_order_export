@@ -7,6 +7,13 @@
             </argument>
         </arguments>
     </type>
+    <type name="Spydemon\SalesOrderExport\Cron\ExportOrder">
+        <arguments>
+            <argument name="modelLogger" xsi:type="object">
+                Spydemon\SalesOrderExport\Logger\Logger
+            </argument>
+        </arguments>
+    </type>
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">
