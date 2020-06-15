@@ -7,13 +7,16 @@
                 comment="Internal ID of the line used by Magento"/>
         <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" identity="false"
                 comment="Order represented by the row"/>
-        <column xsi:type="smallint" name="exported_status" padding="5" unsigned="true" nullable="false"
+        <column xsi:type="smallint" name="exported" padding="5" unsigned="true" nullable="false"
                 identity="false" default="0" comment="Status of order export"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
         </constraint>
-        <constraint xsi:type="foreign" referenceId="SPYDEMON_SALES_ORDER_EXPORT_ORDER"
+        <constraint xsi:type="foreign" referenceId="SPYDEMON_SALES_ORDER_EXPORT_ORDER_REFERENCE"
                     table="spydemon_sales_order_export" column="order_id"
                     referenceTable="sales_order" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="SPYDEMON_SALES_ORDER_EXPORT_ORDER_UNIQUE">
+                    <column name ="order_id" />
+        </constraint>
     </table>
 </schema>
