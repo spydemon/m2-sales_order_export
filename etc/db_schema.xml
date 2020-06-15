@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="spydemon_sales_order_export" resource="default" engine="innodb"
+           comment="Hold state about orders export">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Internal ID of the line used by Magento"/>
+        <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Order represented by the row"/>
+        <column xsi:type="smallint" name="exported_status" padding="5" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Status of order export"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SPYDEMON_SALES_ORDER_EXPORT_ORDER"
+                    table="spydemon_sales_order_export" column="order_id"
+                    referenceTable="sales_order" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+</schema>
