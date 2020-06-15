@@ -24,6 +24,13 @@
         </arguments>
     </type>
     <!--
+        This plugin adds the "status" attribute in order repositories.
+    -->
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="spydemon_salesorderexport_extension_attribute_exported"
+                type="Spydemon\SalesOrderExport\Plugin\OrderRepository\AddExtAttributeExportedStatus" />
+    </type>
+    <!--
         Those virtual types purpose is to create a new logger that will write its content in a export_order.log file
         instead of using the default system.log one.
     -->
