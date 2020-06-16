@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Spydemon\SalesOrderExport\Console\Command\ExportOrder">
+    <type name="Spydemon\SalesOrderExport\Console\ExportOrder">
         <arguments>
             <argument name="modelLogger" xsi:type="object">
                 Spydemon\SalesOrderExport\Logger\Logger
@@ -10,6 +10,13 @@
     <type name="Spydemon\SalesOrderExport\Cron\ExportOrder">
         <arguments>
             <argument name="modelLogger" xsi:type="object">
+                Spydemon\SalesOrderExport\Logger\Logger
+            </argument>
+        </arguments>
+    </type>
+    <type name="Spydemon\SalesOrderExport\Exporter\Order">
+        <arguments>
+            <argument name="logger" xsi:type="object">
                 Spydemon\SalesOrderExport\Logger\Logger
             </argument>
         </arguments>
