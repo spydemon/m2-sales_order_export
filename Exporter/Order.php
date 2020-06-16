@@ -96,4 +96,35 @@ class Order
             ->create();
         return $this->orderRepository->getList($filter);
     }
+
+    /**
+     * This function is to rewrite in your child class for doing the real export.
+     *
+     * @param OrderResourceModelCollection $orders
+     */
+    public function exportOrders(OrderResourceModelCollection $orders)
+    {
+        foreach ($orders as $order) {
+            $this->markOrderAsExported($order, 'Order exported');
+        }
+    }
+
+    /**
+     * Two actions are done here:
+     *   * We flag the order as exported for avoiding to export it another time.
+     *   * We add a comment on it for being able to confirm from the back-office that the order was correctly exported.
+     *
+     * @param Order $order
+     * @param string $comment
+     */
+    protected function markOrderAsExported($order, $comment)
+    {
+        // This reload seems needed for loading extension attributes and thus be able to set the "exported" flag.
+        $order = $this->orderRepository->get($order->getId());
+        $exportAttribute = $order->getExtensionAttributes()->getExported();
+        $exportAttribute->setExported('1');
+        $order->getExtensionAttributes()->setExported($exportAttribute);
+        $order->addCommentToStatusHistory($comment);
+        $this->orderRepository->save($order);
+    }
 }
