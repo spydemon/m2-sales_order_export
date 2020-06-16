@@ -1,0 +1,26 @@
+{
+    "name": "spydemon/m2-sales_order_export",
+    "description": "Wrapper that easily allows you to manage order export on Magento 2.",
+    "homepage": "https://github.com/spydemon/m2-catalog_remove_product_comparison",
+    "type": "magento2-module",
+    "authors": [
+        {
+            "name": "Kevin Hagner (Spydemon)",
+            "email": "jsaipakoimetr@spyzone.fr"
+        }
+    ],
+    "license": [
+        "MIT"
+    ],
+    "require": {
+        "magento/product-community-edition": "2.*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Spydemon\\SalesOrderExport\\": ""
+        }
+    }
+}
