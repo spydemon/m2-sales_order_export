@@ -32,7 +32,7 @@ class SpydemonSalesOrderExportRepository
      */
     public function get(SpydemonSalesOrderExport $model, $id)
     {
-        $this->spydemonSalesOrderExportResource->load($model, $id);
+        $this->spydemonSalesOrderExportResource->load($model, $id, 'order_id');
         return $this;
     }
 
