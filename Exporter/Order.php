@@ -74,14 +74,14 @@ class Order
      */
     public function fetchOrdersToExport() : OrderResourceModelCollection
     {
-        // This first filter will handle all orders that has no exported_status. It should never happen if the order was
+        // This first filter will handle all orders that has no exported status. It should never happen if the order was
         // saved through the order repository but could occurs if it was saved through the old "save" method on the
         // order object directly.
         $filterNotNull = $this->filterBuilder
             ->setField('exported')
             ->setConditionType('null')
             ->create();
-        // This second filter will handle all orders that has an exported_status different to one. Indeed, our import
+        // This second filter will handle all orders that has an exported status different to one. Indeed, our import
         // will set this value to one when the export will be done on the given order. This behavior avoid us to export
         // the same order twice.
         $filterNotOne = $this->filterBuilder

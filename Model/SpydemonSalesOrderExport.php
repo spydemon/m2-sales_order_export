@@ -34,7 +34,7 @@ class SpydemonSalesOrderExport extends InheritedClass
      */
     public function getExportedStatus() : int
     {
-        return $this->getData('exported_status');
+        return $this->getData('exported');
     }
 
     /**
@@ -53,7 +53,7 @@ class SpydemonSalesOrderExport extends InheritedClass
      */
     public function setExportedStatus($status)
     {
-        $this->setData('exported_status', $status);
+        $this->setData('exported', $status);
         return $this;
     }
 }
