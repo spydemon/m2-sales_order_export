@@ -43,6 +43,17 @@ class SpydemonSalesOrderExportRepository
      */
     public function save(SpydemonSalesOrderExport $model)
     {
+        // It seems that the $model could easily be wrongly initialized. Indeed, its relation with its order should be
+        // implemented by hand. This condition will check if the relation was not forgotten and will create the link
+        // if it's the case. Without the ID assignation, the save will not understand that we are updating an already
+        // existing line and will try to create a new one.
+        if (is_null($model->getId())) {
+            $modelClone = clone $model;
+            $this->get($modelClone, $model->getOrderId());
+            if (!is_null($modelClone->getId())) {
+                $model->setId($modelClone->getId());
+            }
+        }
         $this->spydemonSalesOrderExportResource->save($model);
         return $this;
     }
