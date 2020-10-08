@@ -48,6 +48,14 @@ class Order
     protected $searchCriteriaBuilder;
 
     /**
+     * This array should contain all status order that are concerned by the export. Order with a current status not
+     * included in this array will be ignored.
+     *
+     * @var string[]
+     */
+    protected $statusToExport = ['processing'];
+
+    /**
      * Order constructor.
      *
      * @param FilterBuilder $filterBuilder
@@ -92,6 +100,7 @@ class Order
         // We combine $filterNotNull and $filterNotOne in a OR query. It means that only one of the should be true for
         // fetching the given order.
         $filter = $this->searchCriteriaBuilder
+            ->addFilter('status', $this->statusToExport, 'in')
             ->addFilters([$filterNotNull, $filterNotOne])
             ->create();
         return $this->orderRepository->getList($filter);

@@ -37,3 +37,8 @@ composer require spydemon/m2-sales_order_export
 ## Help appreciated
 
 If you like this module and find a bug or an enhancement, don't hesitate to fill an issue, or even better: a pull request. 😀
+
+## Changelog
+
+### v1.1.0
+  * Creation of a `Spydemon\SalesOrderExport\Exporter\Order::$statusToExport` attribute that holds status of orders to export. This attribute can be rewrote in your child class.
