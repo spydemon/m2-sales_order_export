@@ -3,13 +3,14 @@
 namespace Spydemon\SalesOrderExport\Model;
 
 use Magento\Framework\Model\AbstractModel as InheritedClass;
+use Spydemon\SalesOrderExport\Api\Data\OrderExtension;
 
 /**
  * Class SpydemonSalesOrderExport
  *
  * This model handles the "exported" extended attribute that the present module add on Magento orders.
  */
-class SpydemonSalesOrderExport extends InheritedClass
+class SpydemonSalesOrderExport extends InheritedClass implements OrderExtension
 {
     /**
      * @inheritDoc
@@ -41,7 +42,7 @@ class SpydemonSalesOrderExport extends InheritedClass
      * @param $orderId int
      * @return $this
      */
-    public function setOrderId($orderId)
+    public function setOrderId(int $orderId)
     {
         $this->setData('order_id', $orderId);
         return $this;
@@ -51,7 +52,7 @@ class SpydemonSalesOrderExport extends InheritedClass
      * @param $status int
      * @return $this
      */
-    public function setExportedStatus($status)
+    public function setExportedStatus(int $status)
     {
         $this->setData('exported', $status);
         return $this;
